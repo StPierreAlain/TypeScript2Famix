@@ -1,0 +1,18 @@
+{
+  "name": "TypescriptExample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sample.js",
+  "scripts": {
+    "start": "node ./src/sample.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-morph": "^9.1.0"
+  },
+  "dependencies": {
+    "@ts-morph/bootstrap": "^0.8.0"
+  }
+}
