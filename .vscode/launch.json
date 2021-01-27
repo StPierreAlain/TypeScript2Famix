@@ -15,7 +15,7 @@
                 "--nolazy"
             ],
             "skipFiles": [
-                "<node_internals>/**"
+                "${workspaceFolder}/resources/*.ts"
             ],
             "program": "${workspaceFolder}\\src\\sample.ts",
             "outFiles": [
