@@ -8,6 +8,7 @@ import {FamixMseExporter} from "./lib/famix_mse_exporter";
 import { FamixRepository } from './lib/famix_repository';
 
 import * as fs from 'fs';
+import { clearScreenDown } from "readline";
 
 try
 {
@@ -39,16 +40,17 @@ try
             }
             
             namespaces.set(name, fmxNamespace);
-           
-            if (namespace.getClasses().length > 0) {
-                var cls = namespace.getClasses()[0];
+            namespace.getClasses().forEach(cls => {
                 var fmxClass = new Famix.Class(fmxRep);
                 var fileName = cls.getName();
                 fmxPackage.addChildNamedEntities(fmxClass);
                 fmxClass.setName(fileName);
                 fmxRep.addElement(fmxClass);
-                fmxClass.setParentPackage(fmxPackage)
-             }
+                fmxClass.setParentPackage(fmxPackage);
+
+                cls.getProperties().forEach(prop => {
+                });
+            });
          }
     });
     var mse = fmxRep.getMSE();
