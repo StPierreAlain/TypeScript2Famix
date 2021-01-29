@@ -16,7 +16,7 @@ try
     
     var fmxRep = new FamixRepository();
 
-    var fmxPackage = new Famix.Package(fmxRep);
+    //var fmxPackage = new Famix.Package(fmxRep);
     let namespaces = new Map<string,Famix.Namespace>();
     sourceFiles.forEach(file => {
         var fmxFileAnchor = new Famix.FileAnchor(fmxRep);
@@ -35,7 +35,7 @@ try
             else
             {
                 fmxNamespace = new Famix.Namespace(fmxRep);
-                fmxNamespace.setParentPackage(fmxPackage)    
+                //fmxNamespace.setParentPackage(fmxPackage)    
                 fmxNamespace.setName(name);
             }
             
@@ -43,12 +43,15 @@ try
             namespace.getClasses().forEach(cls => {
                 var fmxClass = new Famix.Class(fmxRep);
                 var fileName = cls.getName();
-                fmxPackage.addChildNamedEntities(fmxClass);
+                //fmxPackage.addChildNamedEntities(fmxClass);
                 fmxClass.setName(fileName);
                 fmxRep.addElement(fmxClass);
-                fmxClass.setParentPackage(fmxPackage);
+                //fmxClass.setParentPackage(fmxPackage);
 
-                cls.getProperties().forEach(prop => {
+                cls.getMethods().forEach(method => {
+                    var fmxMethod=new Famix.Method(fmxRep);
+                    fmxMethod.setName(method.getName())
+                    fmxClass.addMethods(fmxMethod);
                 });
             });
          }
